@@ -1,0 +1,89 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #f44336;
+  --correct-color: #f89e13;
+  --not-in-place-color: #18ba89;
+  --wrong-color: #27303f;
+}
+
+body {
+  margin: 0;
+  background-color: #eee;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  padding: 20px;
+  margin: 0 0 50px; /* Top - Right - Bottom - Left */
+  background-color: white;
+}
+
+.guess-game {
+  text-align: center;
+  width: 1000px;
+  margin: 20px auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  /* Guess Game -> Game Area  */
+
+  .game-area {
+    text-align: center;
+  }
+
+  .key-colors {
+    .key-color {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      background-color: white;
+      margin-bottom: 15px;
+
+      .key {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        border-radius: 50%;
+
+        &.correct {
+          background-color: var(--correct-color);
+        }
+
+        &.not-in-place {
+          background-color: var(--not-in-place-color);
+        }
+
+        &.wrong {
+          background-color: var(--wrong-color);
+        }
+      }
+    }
+    .key-color:last-child {
+      margin-bottom: 0;
+    }
+    .key-text {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+}
+
+footer {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+}
