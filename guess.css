@@ -9,6 +9,7 @@
   --correct-color: #f89e13;
   --not-in-place-color: #18ba89;
   --wrong-color: #27303f;
+  --white-color: #fff;
 }
 
 body {
@@ -21,7 +22,7 @@ h1 {
   text-align: center;
   padding: 20px;
   margin: 0 0 50px; /* Top - Right - Bottom - Left */
-  background-color: white;
+  background-color: var(--white-color);
 }
 
 .guess-game {
@@ -35,7 +36,57 @@ h1 {
   /* Guess Game -> Game Area  */
 
   .game-area {
-    text-align: center;
+    .inputs {
+      > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+
+        span {
+          font-size: 30px;
+          margin-right: 15px;
+          font-weight: bold;
+        }
+      }
+      .disabled-inputs {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      input {
+        width: 60px;
+        height: 60px;
+        margin: 0 5px;
+        text-align: center;
+        font-size: 60px;
+        caret-color: var(--primary-color);
+        background: var(--white-color);
+        border: none;
+        border-bottom: 3px solid #333;
+
+        &:focus {
+          outline-color: #ccc;
+        }
+
+        &.correct {
+          background-color: var(--correct-color);
+          border: var(--correct-color);
+          color: var(--white-color);
+        }
+
+        &.not-in-place {
+          background-color: var(--not-in-place-color);
+          border: var(--not-in-place-color);
+          color: var(--white-color);
+        }
+
+        &.wrong {
+          background-color: var(--wrong-color);
+          border: var(--wrong-color);
+          color: var(--white-color);
+        }
+      }
+    }
   }
 
   .key-colors {
@@ -43,7 +94,7 @@ h1 {
       display: flex;
       align-items: center;
       padding: 15px;
-      background-color: white;
+      background-color: var(--white-color);
       margin-bottom: 15px;
 
       .key {
@@ -85,5 +136,5 @@ footer {
   left: 0;
   width: 100%;
   background-color: #333;
-  color: white;
+  color: var(--white-color);
 }
