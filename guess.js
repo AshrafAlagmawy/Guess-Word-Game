@@ -32,8 +32,42 @@ function generateInput() {
     }
     inputsContainer.appendChild(tryDiv);
   }
+
+  // Focus On The First Try Element
   inputsContainer.children[0].children[1].focus();
-  // console.log(inputsContainer.children[0]);
+
+  // Disabled All Inputs Except The First One
+  const inputsInDisabledDiv = document.querySelectorAll(
+    '.disabled-inputs input'
+  );
+  inputsInDisabledDiv.forEach((input) => (input.disabled = true));
+
+  // Convert All Inputs To Uppercase
+  const inputs = document.querySelectorAll('input');
+  inputs.forEach((input, index) => {
+    input.addEventListener('input', function () {
+      this.value = this.value.toUpperCase();
+      const nextInput = inputs[index + 1];
+      // Checking If The Next Input Exist
+      if (nextInput) nextInput.focus();
+    });
+
+    // Using keyboard arrows
+    input.addEventListener('keydown', function (event) {
+      const currentIndex = Array.from(inputs).indexOf(event.target); // Or this
+      // Going to the next input using arrow right
+      if (event.key === 'ArrowRight') {
+        const nextInput = currentIndex + 1;
+        if (nextInput < inputs.length) inputs[nextInput].focus();
+      }
+
+      // Going to the previous input using arrow left
+      if (event.key === 'ArrowLeft') {
+        const previousInput = currentIndex - 1;
+        if (previousInput >= 0) inputs[previousInput].focus();
+      }
+    });
+  });
 }
 
 window.onload = function () {
