@@ -109,7 +109,9 @@ function handleGuesses() {
       inputField.classList.add('not-in-place');
       successGuess = false;
     } else {
+      // Letter Is Not Correct
       inputField.classList.add('wrong');
+      successGuess = false;
     }
   }
 }
