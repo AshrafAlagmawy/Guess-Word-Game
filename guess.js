@@ -11,6 +11,21 @@ let numberOfTries = 6;
 let numberOfLetters = 6;
 let currentTry = 1; // Active try
 
+// Manage Words
+let wordToGuess = '';
+let words = [
+  'Create',
+  'Update',
+  'Delete',
+  'Master',
+  'Branch',
+  'Mainly',
+  'Elzero',
+  'School',
+];
+wordToGuess = words[Math.floor(Math.random() * words.length)].toLowerCase();
+console.log(wordToGuess);
+
 function generateInput() {
   const inputsContainer = document.querySelector('.inputs');
 
@@ -68,6 +83,35 @@ function generateInput() {
       }
     });
   });
+}
+
+const guessButton = document.querySelector('.check');
+
+guessButton.addEventListener('click', handleGuesses);
+
+// Game Word Check Function (Logic)
+function handleGuesses() {
+  let successGuess = true;
+  console.log(wordToGuess);
+  for (let i = 1; i <= numberOfLetters; i++) {
+    const inputField = document.querySelector(
+      `#guess-${currentTry}-letter-${i}`
+    );
+    const letter = inputField.value.toLowerCase();
+    const actualLetter = wordToGuess[i - 1];
+
+    // Game Logic
+    if (letter === actualLetter) {
+      // Letter Is Correct And In The Right PLace
+      inputField.classList.add('correct');
+    } else if (wordToGuess.includes(letter) && letter !== '') {
+      // Letter Is Correct But Not In The Right PLace
+      inputField.classList.add('not-in-place');
+      successGuess = false;
+    } else {
+      inputField.classList.add('wrong');
+    }
+  }
 }
 
 window.onload = function () {
