@@ -25,6 +25,8 @@ let words = [
 ];
 wordToGuess = words[Math.floor(Math.random() * words.length)].toLowerCase();
 console.log(wordToGuess);
+// Message Area
+let messageArea = document.querySelector('.message');
 
 function generateInput() {
   const inputsContainer = document.querySelector('.inputs');
@@ -113,6 +115,22 @@ function handleGuesses() {
       inputField.classList.add('wrong');
       successGuess = false;
     }
+  }
+
+  // Check If User Win Or Lose
+  if (successGuess) {
+    // Success Guess
+    messageArea.innerHTML = `You Win 🥳, The Word Is <span>${wordToGuess}</span>`;
+
+    // Add Disabled Class To All Tries Divs
+    let allTries = document.querySelectorAll('.inputs > div');
+    allTries.forEach((tryDiv) => tryDiv.classList.add('disabled-inputs'));
+
+    // Disable Guess Button
+    guessButton.disabled = true;
+  } else {
+    // Wrong Guess
+    console.log('You Lose');
   }
 }
 
