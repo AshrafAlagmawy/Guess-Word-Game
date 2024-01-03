@@ -144,6 +144,7 @@ function handleGuesses() {
     nextTryInput.forEach((input) => (input.disabled = false));
 
     let el = document.querySelector(`.try-${currentTry}`);
+
     if (el) {
       document
         .querySelector(`.try-${currentTry}`)
