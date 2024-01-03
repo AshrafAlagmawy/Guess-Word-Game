@@ -130,7 +130,29 @@ function handleGuesses() {
     guessButton.disabled = true;
   } else {
     // Wrong Guess
-    console.log('You Lose');
+    document
+      .querySelector(`.try-${currentTry}`)
+      .classList.add('disabled-inputs');
+    const currentTryInputs = document.querySelectorAll(
+      `.try-${currentTry} input`
+    );
+    currentTryInputs.forEach((input) => (input.disabled = true));
+
+    currentTry++;
+
+    const nextTryInput = document.querySelectorAll(`.try-${currentTry} input`);
+    nextTryInput.forEach((input) => (input.disabled = false));
+
+    let el = document.querySelector(`.try-${currentTry}`);
+    if (el) {
+      document
+        .querySelector(`.try-${currentTry}`)
+        .classList.add('disabled-inputs');
+      el.children[1].focus();
+    } else {
+      guessButton.disabled = true;
+      messageArea.innerHTML = `You Lose The Game 😭, The Word Is <span>${wordToGuess}</span>`;
+    }
   }
 }
 
